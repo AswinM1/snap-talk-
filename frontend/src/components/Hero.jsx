@@ -1,13 +1,9 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from './ThemeContext';
 import { Link } from 'react-router-dom';
-import { useLogin } from './LoginContext';
 import { motion } from "framer-motion";
+import { SignedIn, SignedOut, SignInButton } from '@clerk/clerk-react';
 
 function Hero() {
-  const { theme } = useContext(ThemeContext);
-  const { isLoggedIn } = useLogin();
-
   const parentVariants = {
     hidden: {
       opacity: 0,
@@ -16,7 +12,7 @@ function Hero() {
       opacity: 1,
       transition: {
         staggerChildren: 0.3,
-        duration:2
+        duration: 2
       },
     },
   };
@@ -24,12 +20,12 @@ function Hero() {
   const childVariants = {
     hidden: {
       opacity: 0,
-      y:0
+      y: 0
     },
     visible: {
       opacity: 1,
       y: 0,
-      duration:2
+      duration: 2
     },
   };
 
@@ -41,11 +37,11 @@ function Hero() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        color: 'white',
+        color: 'black', // Changed to black for text
         textAlign: 'center',
         padding: '20px',
-        background: 'linear-gradient(to bottom, #000 20%, #4521A1 65%)'
       }}
+      className='bg-purple-700' // Purple background color
     >
       <motion.div
         variants={parentVariants}
@@ -54,29 +50,30 @@ function Hero() {
         style={{
           maxWidth: '900px',
           width: '100%',
+          
           padding: '10px',
         }}
       >
         <motion.h1
           variants={childVariants}
-          className="text-[90px] font-sans font-semibold leading-[85px]"
+          className="text-[90px] font-sans font-black leading-[85px] tracking-tighter"
         >
-        The Snap Talk analyser
+          The Snap Talk analyser
         </motion.h1>
         <motion.p
           variants={childVariants}
           style={{
             fontSize: '1.2rem',
-            
-            color: '#ccc',
+            color: 'black',
+            fontWeight:'bold',
             lineHeight: '1.6',
-             margin:'0 auto',
-            width:'700px',
-            paddingTop:'40px'
-           
+            margin: '0 auto',
+            width: '700px',
+            fontFamily:'monospace',
+            paddingTop: '40px'
           }}
         >
-          ever needed someone to provide feedbacks on the way you talk.Here we are with the snap talk analyser which analyses the snap talks you give with the power of ai and provide real time feedbacks
+          Introducing  the Snap Talk analyser, which analyzes the snap talks you give with the power of AI and provides real-time feedback.
         </motion.p>
         <div
           style={{
@@ -84,51 +81,84 @@ function Hero() {
             justifyContent: 'center',
             gap: '20px',
             marginTop: '30px',
-            
           }}
         >
+          <SignedIn>
           <motion.div variants={childVariants}>
-            <Link to="/home">
+            <Link to={"/home"}>
               <button
                 style={{
                   padding: '10px 20px',
                   fontSize: '1rem',
-                  color: 'black',
-                  backgroundColor: 'white',
+                  color: 'white', // Black text color
+                  backgroundColor: 'black',  // White background for button
                   border: 'none',
                   borderRadius: '5px',
+                
                   cursor: 'pointer',
                   transition: 'background-color 0.3s',
                 }}
                 onMouseOver={(e) =>
-                  (e.target.style.backgroundColor = '#121212')
+                  (e.target.style.backgroundColor = '#121212') // Darker background on hover
                 }
                 onMouseOut={(e) =>
-                  (e.target.style.backgroundColor = 'white')
+                  (e.target.style.backgroundColor = 'black') // Return to original background
                 }
               >
                 Get Started
               </button>
-            </Link>
+              </Link>
+          
           </motion.div>
+              </SignedIn>
+          <SignedOut>
+            <SignInButton>
+          <motion.div variants={childVariants}>
+            
+              <button
+                style={{
+                  padding: '10px 20px',
+                  fontSize: '1rem',
+                  color: 'white', // Black text color
+                  backgroundColor: 'black',  // White background for button
+                  border: 'none',
+                  borderRadius: '5px',
+                
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s',
+                }}
+                onMouseOver={(e) =>
+                  (e.target.style.backgroundColor = '#121212') // Darker background on hover
+                }
+                onMouseOut={(e) =>
+                  (e.target.style.backgroundColor = 'black') // Return to original background
+                }
+              >
+                Get Started
+              </button>
+          
+          </motion.div>
+              </SignInButton>
+              </SignedOut>
           <motion.div variants={childVariants}>
             <Link to="/learn-more">
               <button
                 style={{
                   padding: '10px 20px',
-                  fontSize: '1rem',
-                  color: 'black',
-                  backgroundColor: 'white',
+                
+                  color: 'white', // Black text color
+                  backgroundColor: 'black', // White background for button
                   border: 'none',
+
                   borderRadius: '5px',
                   cursor: 'pointer',
                   transition: 'background-color 0.3s',
                 }}
                 onMouseOver={(e) =>
-                  (e.target.style.backgroundColor = '#121212')
+                  (e.target.style.backgroundColor = '#121212') // Darker background on hover
                 }
                 onMouseOut={(e) =>
-                  (e.target.style.backgroundColor = 'white')
+                  (e.target.style.backgroundColor = 'black') // Return to original background
                 }
               >
                 Learn More

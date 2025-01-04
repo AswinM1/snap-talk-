@@ -7,9 +7,7 @@ import axios from "axios";
 const Home = () => {
   const [transcript, setTranscript] = useState("");
   const [textToCopy, setTextToCopy] = useState("");
-  const [isCopied, setCopied] = useClipboard(textToCopy, {
-    successDuration: 1000,
-  });
+  const [isCopied, setCopied] = useClipboard(textToCopy, { successDuration: 1000 });
   const [result, setResult] = useState("");
 
   const {
@@ -29,12 +27,11 @@ const Home = () => {
       });
 
       // Check if response contains the expected structure
-      const emailText =
-        response.data?.reply?.choices?.[0]?.message?.content
+      const emailText = response?.data?.reply?.choices?.[0]?.message?.content || "No response received";
       setResult(emailText);
     } catch (error) {
       console.error("Error during API call:", error);
-      alert("An error occurred: " + error.response?.data?.error || error.message);
+      alert("An error occurred: " + (error.response?.data?.error || error.message));
     }
   };
 
@@ -65,63 +62,52 @@ const Home = () => {
   }
 
   return (
-    <div
-      className="min-h-screen text-white p-6"
-      style={{
-        background: "linear-gradient(to bottom, #000 20%, #4521A1 65%)",
-      }}
-    >
-      <div className="max-w-3xl mx-auto p-6 bg-black rounded-xl shadow-lg">
-        <h1 className="text-3xl font-semibold mb-6 text-center w-10 h-auto"></h1>
-
+    <div className="min-h-screen text-black p-6 bg-purple-700 flex items-center justify-center text-center">
+      <div className="max-w-3xl mx-auto p-6 bg-neutral-200 rounded-xl shadow-lg text-black">
+        <p className="font-sans text-xl py-3 font-black tracking-tighter">Start speaking to analyze</p>
         <div className="space-y-6">
           <div className="flex gap-3">
-            <div className="mt-4 p-4 bg-black rounded-lg border border-gray-600 w-[50%] h-60 flex flex-col">
+            <div className="mt-4 p-4 bg-[#121212] rounded-lg border border-gray-600 w-[50%] h-60 flex flex-col">
               <textarea
-                className="flex-grow bg-black text-white border-none resize-none p-2 focus:outline-none"
+                className="flex-grow bg-[#121212] text-white border-none resize-none p-2 focus:outline-none"
                 value={transcript}
                 onChange={(e) => setTranscript(e.target.value)}
                 placeholder="Your text will be displayed here"
               />
             </div>
-            <div className="mt-4 p-4 bg-black rounded-lg border border-gray-600 w-[50%] h-60 flex flex-col">
-              
-                <p>{result}</p>
-              {/* // ) : (
-              //   <p className="p-1 text-gray-400">Your Result Will be displayed here</p>
-              // )} */}
+            <div className="mt-4 p-4 bg-[#121212] rounded-lg border w-[50%] h-60 flex flex-col">
+              <p>{result}</p>
             </div>
           </div>
 
           <div className="flex space-x-4 justify-center">
             <button
               onClick={startListening}
-              className="px-4 py-auto bg-white hover:bg-neutral-200 rounded-lg text-lg text-black"
+              className="px-4 py-auto bg-black hover:bg-gray-700 rounded-lg text-lg text-white"
             >
               Start Listening
             </button>
             <button
               onClick={stopListening}
-              className="px-4 py-auto bg-white hover:bg-neutral-200 rounded-lg text-lg text-black"
+              className="px-4 py-auto bg-black hover:bg-gray-700 rounded-lg text-lg text-white"
             >
               Stop Listening
             </button>
             <button
               onClick={handleSomething}
-              className="px-4 py-auto bg-white hover:bg-neutral-200 rounded-lg text-lg text-black"
+              className="px-4 py-auto bg-black hover:bg-gray-700 rounded-lg text-lg text-white"
             >
               {transcript ? "Analyse" : "no text"}
             </button>
             <button
               onClick={exportTranscriptToPDF}
-              className="px-3 py-3 bg-white hover:bg-neutral-200 rounded-lg text-lg text-black"
+              className="px-3 py-3 bg-black hover:bg-gray-700 rounded-lg text-lg text-white"
             >
               Export to PDF
             </button>
           </div>
         </div>
       </div>
-      <div className="flex m-auto justify-center align-middle py-10 my-10"></div>
     </div>
   );
 };

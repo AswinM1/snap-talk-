@@ -2,6 +2,8 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.25.9",
     "@babel/runtime": "^7.26.0",
+    "@clerk/clerk-react": "^5.21.0",
+    "@clerk/themes": "^2.2.3",
     "@vitejs/plugin-react": "^4.3.4",
     "axios": "^1.7.9",
     "framer-motion": "^11.15.0",
