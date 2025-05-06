@@ -1,31 +1,40 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom'; // Correct import for routing
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
-
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Contact from './components/Contact';
-import { SignedIn } from '@clerk/clerk-react';
-// import Features from './components/Features';
+import { SignedIn, SignInButton, useUser,SignIn } from '@clerk/clerk-react';
+import SignInPage from './components/signin';
 
 function App() {
+ 
+  const { isSignedIn,user} = useUser();
+  console.log(user)
+
   return (
     <div>
-     
-       
-     
-            <Navbar />
-            <Routes>
-              <Route path="/home" element={<SignedIn><Home /></SignedIn>} />
-             
-              <Route path="/" element={<Hero />} />
-            
-              <Route path="/contact" element={<Contact />} />
+      <Navbar />
+
+      {isSignedIn ? (
+        <Routes>
+           <Route path='/login' element={<Hero/>}></Route>
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Hero />} />
+          <Route path="/contact" element={<Contact />} />
           
-            </Routes>
-         
-        
-      
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path='/login' element={<SignInPage/>}></Route>
+          <Route path="/home" element={<SignInPage/>} />
+          <Route path="/" element={<Hero />} />
+          <Route path="/contact" element={<SignInPage/>} />
+          <Route path="/home" element={<SignInPage/>} />
+          <Route path="/" element={<Hero />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      )}
     </div>
   );
 }

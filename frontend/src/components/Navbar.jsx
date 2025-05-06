@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import bg1 from '../assets/bg.svg';
-import { SignedIn, UserButton, SignedOut, SignInButton } from '@clerk/clerk-react';
+import { SignedIn, UserButton, SignedOut, SignInButton,useUser } from '@clerk/clerk-react';
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isSignedIn,user} = useUser();
+ 
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <nav className=" text-black shadow-lg rounded-lg mx-4">
+    <nav className=" text-black shadow-lg rounded-lg mx-4 bg-transparent">
       <div className="max-w-4xl mx-auto mt-2 px-4 sm:px-6 lg:px-8 border border-gray-400 rounded-full bg-[#121212]">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -32,22 +34,23 @@ function Navbar() {
             <SignedIn>
               <UserButton>
                 <div className="bg-white text-black hover:bg-neutral-200 px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
-                  Hello user
+                  Welcome back
                 </div>
               </UserButton>
             </SignedIn>
 
             <SignedOut>
-              <SignInButton>
-                <div className="bg-white text-black hover:bg-neutral-200 px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
+             <Link to={"/login"}>
+                <div className="bg-sky-400 text-black hover:bg-neutral-200 px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
                   Sign in
                 </div>
-              </SignInButton>
+                </Link>
+              
             </SignedOut>
 
             <Link
               to="/home"
-              className="bg-white text-black px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
+              className="bg-sky-200 text-black px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
             >
               Try Now
             </Link>
