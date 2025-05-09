@@ -13,14 +13,14 @@ function Navbar() {
   };
 
   return (
-    <nav className=" text-black shadow-lg rounded-lg mx-4 bg-transparent">
-      <div className="max-w-4xl mx-auto mt-2 px-4 sm:px-6 lg:px-8 border border-gray-400 rounded-full bg-[#121212]">
+    <nav className=" text-black shadow-lg rounded-lg mx-4 bg-black ">
+      <div className="max-w-4xl mx-auto mt-2 px-4 sm:px-6 lg:px-8  rounded-full ">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0">
               <img src={bg1} className="h-8 w-auto" alt="Logo" />
             </Link>
-              <p className='text-neutral-300 font-sans font-bold px-4'>Snap talk analyser</p>
+              <p className='text-violet-300 font-sans font-bold px-4'>Snap talk analyser</p>
           </div>
           <div className="hidden md:flex space-x-4">
             <Link
@@ -31,13 +31,6 @@ function Navbar() {
             </Link>
 
             {/* Desktop Sign In logic */}
-            <SignedIn>
-              <UserButton>
-                <div className="bg-white text-black hover:bg-neutral-200 px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out">
-                  Welcome back
-                </div>
-              </UserButton>
-            </SignedIn>
 
             <SignedOut>
              <Link to={"/login"}>
@@ -50,10 +43,15 @@ function Navbar() {
 
             <Link
               to="/home"
-              className="bg-sky-200 text-black px-4 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
+              className="bg-violet-500 rounded-xl  text-black px-4 py-2  text-sm font-medium transition duration-150 ease-in-out"
             >
               Try Now
             </Link>
+            <SignedIn>
+              <UserButton>
+              </UserButton>
+             
+            </SignedIn>
           </div>
 
           <div className="md:hidden">

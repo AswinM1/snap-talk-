@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import Contact from './components/Contact';
 import { SignedIn, SignInButton, useUser,SignIn } from '@clerk/clerk-react';
 import SignInPage from './components/signin';
+import Profile from './components/Profile';
 
 function App() {
  
@@ -19,6 +20,7 @@ function App() {
       {isSignedIn ? (
         <Routes>
            <Route path='/login' element={<Hero/>}></Route>
+           <Route path='/profile' element={<Profile/>}></Route>
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Hero />} />
           <Route path="/contact" element={<Contact />} />
@@ -27,6 +29,7 @@ function App() {
       ) : (
         <Routes>
           <Route path='/login' element={<SignInPage/>}></Route>
+          <Route path='/profile' element={<SignInPage/>}></Route>
           <Route path="/home" element={<SignInPage/>} />
           <Route path="/" element={<Hero />} />
           <Route path="/contact" element={<SignInPage/>} />
@@ -34,7 +37,11 @@ function App() {
           <Route path="/" element={<Hero />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+
       )}
+      <Routes>
+        <Route path="*" element="page not found" />
+      </Routes>
     </div>
   );
 }
