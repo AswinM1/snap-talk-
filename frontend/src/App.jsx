@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+     
 
       {isSignedIn ? (
         <Routes>

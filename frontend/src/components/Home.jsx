@@ -4,6 +4,8 @@ import Sidebar from "./Sidebar";
 import UploadSection from "./Upload";
 import TranscriptionResult from "./Transcribe";
 import AnalysisResult from "./Analysis";
+import '../../cover.png'
+import { motion } from 'motion/react'
 
 const Home = () => {
   const [audioFile, setAudioFile] = useState(null);
@@ -12,6 +14,7 @@ const Home = () => {
   const [dragOver, setDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const[hide,setHide]=useState(false)
 
   const handleFileChange = (e) => setAudioFile(e.target.files[0]);
 
@@ -64,12 +67,14 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-[black] text-white">
-      <div className="w-64 border-r border-gray-800">
+    <div className="min-h-screen flex  text-white">
+      <div >
+     
         <Sidebar />
-      </div>
+      
 
-      <div className="flex-1 flex flex-col items-center justify-start p-8 gap-6">
+      </div>
+      {!result && <div className="flex-1 flex flex-col items-center justify-start p-8 gap-6">
         <UploadSection
           audioFile={audioFile}
           handleFileChange={handleFileChange}
@@ -85,11 +90,25 @@ const Home = () => {
           isAnalyzing={isAnalyzing}
         />
       </div>
+}
+     {audioFile && 
+      <motion.div
+      initial={{
+        opacity:0,
+        filter:"blur(4px)"
 
-      <div className="w-1/3 p-6 border-l border-white-400 overflow-y-auto">
+      }}
+      animate={{
+        opacity:1,
+        filter:"blur(0px)"
+        
+      }}
+      
+      className="w-1/2 p-6 border-l border-neutral-800 overflow-y-auto">
         <AnalysisResult analyse={analyse} />
         <p className="align-middle justify-center m-auto text-center">your resut will appear here</p>
-      </div>
+      </motion.div>
+      }
     </div>
   );
 };

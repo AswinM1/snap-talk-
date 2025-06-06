@@ -16,6 +16,7 @@
     "geist": "^1.4.2",
     "jspdf": "^2.5.2",
     "lucide-react": "^0.507.0",
+    "motion": "^12.16.0",
     "react-router-dom": "^7.1.1",
     "react-speech-recognition": "^3.10.0",
     "react-toastify": "^11.0.2",

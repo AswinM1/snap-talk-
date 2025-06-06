@@ -38,9 +38,9 @@ const cardVariants = {
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-black text-white p-8 font-sans">
-      <h1 className="text-6xl font-bold text-center mb-12">Choose Your Plan</h1>
-      <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+    <div className="min-h-screen text-white p-8 font-sans ">
+      <h1 className="text-4xl font-bold text-center mb-12">Choose Your Plan</h1>
+      <div className="grid gap-5 md:grid-cols-3 max-w-4xl mx-auto">
         {plans.map((plan, idx) => (
           <motion.div
             key={idx}
@@ -50,7 +50,9 @@ export default function PricingPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             className={`rounded-2xl p-8 border transition-transform hover:scale-105 ${
-              plan.highlight ? 'border-white-400 bg-violet-700' : 'border-gray-700'
+              plan.highlight
+                ? 'border-neutral-800 bg-gradient-to-b from-blue-700 to-[#1e1e1e] shadow-lg'
+                : 'border-neutral-800 bg-neutral-900'
             }`}
           >
             <h2 className="text-2xl font-semibold mb-4">{plan.name}</h2>
@@ -63,7 +65,7 @@ export default function PricingPage() {
                 </li>
               ))}
             </ul>
-            <button className="w-full bg-white text-black py-2 rounded-xl font-medium hover:bg-neutral-300 transition">
+            <button className="w-full bg-blue-600 text-white  py-2 rounded-xl font-medium hover:bg-blue-700 transition">
               {plan.button}
             </button>
           </motion.div>

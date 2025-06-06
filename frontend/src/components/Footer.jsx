@@ -3,11 +3,11 @@ import { Github, Linkedin } from 'lucide-react';
 
 function Footer() {
   return (
-    <footer className=" text-white py-10 px-10  ">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+    <footer className=" text-neutral-300 w-full flex font-sans tracking-tighter font-medium   mx-auto justify-center absolite bottom-0 ">
+      <div className="max-w-5xl mx-auto flex w-full justify-betweem items-center  gap-2  align-middle">
         <p className="text-center md:text-left text-lg">© {new Date().getFullYear()} Built by Aswin </p>
        
-        <div className="flex gap-4 mt-4 md:mt-0">
+        <div className=" gap-4 mt-4 md:mt-0 justify-center items-center flex mx-auto">
            
           <a
             href="https://github.com/AswinM1 "
@@ -16,8 +16,8 @@ function Footer() {
             className="hover:text-gray-400 transition"
           >
             <Github className="w-5 h-5" />
-          </a>
-          <a
+          </a> 
+           <a
             href="https://linkedin.com/in/aswinfullstack"
             target="_blank"
             rel="noopener noreferrer"

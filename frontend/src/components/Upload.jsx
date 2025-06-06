@@ -10,8 +10,12 @@ const UploadSection = ({
   isUploading,
 }) => {
   return (
-<div className="  bg-[#121212] bg-opacity-60 backdrop-blur-lg border-gray-600  border shadow-2xl p-8 text-center rounded-xl w-full max-w-xl">
-      <p className="text-white text-xl mb-4 font-bold">Upload your audio</p>
+<div 
+style={{  
+  background:"radial-gradient(circle at bottom left,blue 20%,#121212 40%)"
+}}
+className="  bg-[#121212] bg-opacity-60 backdrop-blur-lg border-gray-600  border shadow-2xl p-8 text-center rounded-xl w-full max-w-xl">
+      <p className="text-neutral-300 text-xl mb-4 font-bold"></p>
 
       <div
         onDrop={handleDrop}
@@ -39,9 +43,8 @@ const UploadSection = ({
         onClick={handleUpload}
         disabled={isUploading || !audioFile}
         className={`px-6 py-3 rounded-3xl font-medium transition-all duration-300 ${
-          isUploading || !audioFile
-            ? "bg-gray-600 cursor-not-allowed"
-            : "bg-violet-600 hover:bg-violet-700"
+         
+           "bg-blue-600 cursor-pointer"
         }`}
       >
         {isUploading ? (

@@ -7,6 +7,15 @@ export default {
   ],
   theme: {
   	extend: {
+		 fontFamily: {
+        sans: ['"Geist Sans"', 'sans-serif'],
+		   serif: ['"Geist Sans"', 'sans'],
+		 
+      },
+// 	   fontFamily: {
+//  ['"Playfair Display"', 'serif'],
+//       },
+	          serif: ['"Libre Baskerville"', 'serif'],
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
